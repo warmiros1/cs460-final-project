@@ -1,0 +1,4 @@
+*.pyc
+test.py
+__init__.py
+dos_main.py
