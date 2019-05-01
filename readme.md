@@ -8,4 +8,4 @@ We are confident that a sufficiently long attack from AWS Lambda would take the 
 
 ## Program Usage
 
-`Python dos.py --help`
+`python dos.py --help`
